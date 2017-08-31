@@ -15,18 +15,24 @@ make it easy to reduce the number of concepts one is exposed to in order to
 maximize understanding of terraform itself.
 
 # Usage
-## Optional
-Initialize remote state using S3 backend. Partial config is used to avoid
-storing secrets in remote.tf. 
+## Set up environment
 
-If you do not want to use remote state, simply change or rename remote.tf.
+The simplest way to use this demo is to use an access key and secret in your environment (but there are other[1] ways).
+
+Go here to learn more about AWS access keys and secrets. I highly recommend you do this for an IAM user and not your root account!
+
+http://docs.aws.amazon.com/general/latest/gr/aws-sec-cred-types.html#access-keys-and-secret-access-keys
+
+[1] https://www.terraform.io/docs/providers/aws/#authentication
 
 ```console
-$ cd ec2-web-cluster/
-$ terraform init -backend-config="region=<region>" \
- -backend-config="bucket=<bucket name>" \
- -backend-config="key=<path/to/file.tfstate>"
+export AWS_ACCESS_KEY_ID="anaccesskey"
+export AWS_SECRET_ACCESS_KEY="asecretkey"
+
 ```
+
+## Region
+If you do not wish to use us-east-1, change the value of the "region" variable in vars.tf.
 
 ## Plan
 Plan introspects current state of the resources defined in \*.tf and comes up
